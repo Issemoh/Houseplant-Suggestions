@@ -12,10 +12,17 @@ namespace Houseplant_Suggestions
 {
     public partial class Form1 : Form
     {
+         readonly int MinTemp = 50; // Global variable, 
+        readonly int MaxTemp = 90; // Conventtion
+
         public Form1()
         {
             InitializeComponent();
             this.trkTemp.Scroll += new System.EventHandler(this.HouseConditionsChanged);
+            
+            this.trkTemp.Minimum = MinTemp;
+            this.trkTemp.Maximum = MaxTemp;
+
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -33,11 +40,11 @@ namespace Houseplant_Suggestions
             int homeTemp = trkTemp.Value;
             bool southFacingWindowAvailable = chkSouthFacing.Checked;
 
-            if (homeTemp == 50)
+            if (homeTemp == MinTemp)
             {
                 MessageBox.Show(text: "Your home may be too cold for most houseplants", caption: "Information");
             }
-            if (homeTemp == 90)
+            if (homeTemp == MaxTemp)
             {
                 MessageBox.Show(text: "Your home may be too warm for most houseplant", caption: "Information");
             }
