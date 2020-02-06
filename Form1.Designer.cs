@@ -33,6 +33,7 @@
             this.lblSuggestion = new System.Windows.Forms.Label();
             this.lblTemp = new System.Windows.Forms.Label();
             this.trkTemp = new System.Windows.Forms.TrackBar();
+            this.lnkHousePlantInfo = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.trkTemp)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,12 +91,25 @@
             this.trkTemp.Value = 50;
             this.trkTemp.Scroll += new System.EventHandler(this.HouseConditionsChanged);
             // 
+            // lnkHousePlantInfo
+            // 
+            this.lnkHousePlantInfo.AutoSize = true;
+            this.lnkHousePlantInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnkHousePlantInfo.Location = new System.Drawing.Point(368, 216);
+            this.lnkHousePlantInfo.Name = "lnkHousePlantInfo";
+            this.lnkHousePlantInfo.Size = new System.Drawing.Size(132, 17);
+            this.lnkHousePlantInfo.TabIndex = 6;
+            this.lnkHousePlantInfo.TabStop = true;
+            this.lnkHousePlantInfo.Text = "houseplant411.com";
+            this.lnkHousePlantInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkHousePlantInfo_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lnkHousePlantInfo);
             this.Controls.Add(this.trkTemp);
             this.Controls.Add(this.lblTemp);
             this.Controls.Add(this.lblSuggestion);
@@ -117,6 +131,7 @@
         private System.Windows.Forms.Label lblSuggestion;
         private System.Windows.Forms.Label lblTemp;
         private System.Windows.Forms.TrackBar trkTemp;
+        private System.Windows.Forms.LinkLabel lnkHousePlantInfo;
     }
 }
 

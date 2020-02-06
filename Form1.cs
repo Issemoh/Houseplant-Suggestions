@@ -33,6 +33,14 @@ namespace Houseplant_Suggestions
             int homeTemp = trkTemp.Value;
             bool southFacingWindowAvailable = chkSouthFacing.Checked;
 
+            if (homeTemp == 50)
+            {
+                MessageBox.Show(text: "Your home may be too cold for most houseplants", caption: "Information");
+            }
+            if (homeTemp == 90)
+            {
+                MessageBox.Show(text: "Your home may be too warm for most houseplant", caption: "Information");
+            }
             string suggestedPlant = GenerateSuggestion(homeTemp, southFacingWindowAvailable);
 
             lblSuggestion.Text = suggestedPlant;
@@ -52,7 +60,7 @@ namespace Houseplant_Suggestions
             }
             else
             {
-                    if (temp > 65)
+                if (temp > 65)
                 {
                     return "Dragon Tree";
                 }
@@ -71,6 +79,30 @@ namespace Houseplant_Suggestions
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void lnkHousePlantInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (lblSuggestion.Text == "plant suggestion here")
+            {
+                ShowWebPage();
+            }
+            else
+            {
+                ShowWebPage(lblSuggestion.Text);
+            }
+        }
+
+        private void ShowWebPage(string plantName = null) // optional parameter
+        {
+            string url = "https://www.houseplant411.com/";
+
+            if (plantName != null)
+            {
+                //link to a specific plant
+                url = url + "houseplant?hpq=" + plantName;
+            }
+            System.Diagnostics.Process.Start(url); // Launch web browser, 
         }
     }
 }
