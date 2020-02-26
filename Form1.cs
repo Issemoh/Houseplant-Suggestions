@@ -14,6 +14,9 @@ namespace Houseplant_Suggestions
     {
          readonly int MinTemp = 50; // Global variable, 
         readonly int MaxTemp = 90; // Conventtion
+         bool ShownMinWarning = true;
+         bool ShownMaxWarning = false;
+
 
         public Form1()
         {
@@ -22,7 +25,7 @@ namespace Houseplant_Suggestions
             
             this.trkTemp.Minimum = MinTemp;
             this.trkTemp.Maximum = MaxTemp;
-
+           
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -38,20 +41,26 @@ namespace Houseplant_Suggestions
         private void HouseConditionsChanged(object sender, EventArgs e)
         {
             int homeTemp = trkTemp.Value;
+           
             bool southFacingWindowAvailable = chkSouthFacing.Checked;
 
-            if (homeTemp == MinTemp)
+            if (ShownMinWarning == false && homeTemp == MinTemp)
             {
                 MessageBox.Show(text: "Your home may be too cold for most houseplants", caption: "Information");
+                ShownMinWarning = true;
             }
-            if (homeTemp == MaxTemp)
+            if (ShownMaxWarning == false && homeTemp == MaxTemp)
             {
                 MessageBox.Show(text: "Your home may be too warm for most houseplant", caption: "Information");
+                ShownMaxWarning = true;
+         
             }
+     
             string suggestedPlant = GenerateSuggestion(homeTemp, southFacingWindowAvailable);
 
             lblSuggestion.Text = suggestedPlant;
         }
+
         private string GenerateSuggestion(int temp, bool soutFacing)
         {
             if (soutFacing)
@@ -77,17 +86,6 @@ namespace Houseplant_Suggestions
                 }
             }
         }
-
-        private void lblSuggestion_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void lnkHousePlantInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (lblSuggestion.Text == "plant suggestion here")
@@ -110,6 +108,11 @@ namespace Houseplant_Suggestions
                 url = url + "houseplant?hpq=" + plantName;
             }
             System.Diagnostics.Process.Start(url); // Launch web browser, 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
