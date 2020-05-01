@@ -17,6 +17,7 @@ namespace Houseplant_Suggestions
          bool ShownMinWarning = true;
          bool ShownMaxWarning = false;
 
+        HousePlantInfo plantInfo = new HousePlantInfo();
 
         public Form1()
         {
@@ -56,59 +57,24 @@ namespace Houseplant_Suggestions
          
             }
      
-            string suggestedPlant = GenerateSuggestion(homeTemp, southFacingWindowAvailable);
+            string suggestedPlant = plantInfo.GenerateSuggestion(homeTemp, southFacingWindowAvailable);
 
             lblSuggestion.Text = suggestedPlant;
         }
 
-        private string GenerateSuggestion(int temp, bool soutFacing)
-        {
-            if (soutFacing)
-            {
-                if (temp > 65)
-                {
-                    return "Peace Lily";
-                }
-                else
-                {
-                    return "Spider Plant";
-                }
-            }
-            else
-            {
-                if (temp > 65)
-                {
-                    return "Dragon Tree";
-                }
-                else
-                {
-                    return "Ivy";
-                }
-            }
-        }
+        
         private void lnkHousePlantInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (lblSuggestion.Text == "plant suggestion here")
             {
-                ShowWebPage();
+              plantInfo.ShowWebPage();
             }
             else
             {
-                ShowWebPage(lblSuggestion.Text);
+                plantInfo.ShowWebPage(lblSuggestion.Text);
             }
         }
 
-        private void ShowWebPage(string plantName = null) // optional parameter
-        {
-            string url = "https://www.houseplant411.com/";
-
-            if (plantName != null)
-            {
-                //link to a specific plant
-                url = url + "houseplant?hpq=" + plantName;
-            }
-            System.Diagnostics.Process.Start(url); // Launch web browser, 
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
